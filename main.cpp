@@ -5,6 +5,6 @@ using std::endl;
 
 int main()
 {
-    cout << "Test" << endl;
+    cout << "Testing .gitignore" << endl;
     return 0;
 }
