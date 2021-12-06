@@ -10,6 +10,6 @@ int main()
     Expense exp = Expense(1, 11.3, "Nike bag");
     exp.showExpenseDetails();
     exp.showTotalNumberOfExpenses();
-    exp.~Expense();
+
     return 0;
 }
