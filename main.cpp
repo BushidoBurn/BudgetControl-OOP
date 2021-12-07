@@ -14,5 +14,7 @@ int main()
 
     FixedExpense f_exp = FixedExpense(1, 3, 1, 12.3, "Rent");
 
+    exp.listAllExpenses();
+
     return 0;
 }

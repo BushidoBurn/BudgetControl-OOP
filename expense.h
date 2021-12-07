@@ -12,8 +12,8 @@ private:
     float price;
     string definition;
     inline static int expense_counter = {0};
-    vector<Expense> expense_vector;
-    vector<string> months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+    inline static vector<Expense *> expense_vector;
+    inline static vector<string> months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
 public:
     Expense(int month, float price, string definition)
@@ -23,6 +23,7 @@ public:
         this->price = price;
         this->definition = definition;
         this->expense_counter++;
+        this->expense_vector.push_back(this);
         cout << "1  Expence Created" << endl;
     }
 
@@ -40,20 +41,28 @@ public:
     {
         cout << "Definition " << definition << endl;
         cout << "Price " << price << endl;
-        cout << "Month " << months.at(month) << endl;
+        cout << "Month " << months.at(month - 1) << endl;
     }
     void showTotalNumberOfExpenses()
     {
         cout << "There are totally " << this->expense_counter << " in memory" << endl;
     }
 
-    void addExpenseToVector(Expense e)
+    void addExpenseToVector(Expense &e)
     {
-        this->expense_vector.push_back(e);
+        this->expense_vector.push_back(&e);
     }
     void popExpenseFromVector()
     {
         this->expense_vector.pop_back();
+    }
+
+    void listAllExpenses()
+    {
+        for (auto exp : this->expense_vector)
+        {
+            cout << exp->definition << " " << exp->price << " " << Expense::months.at(exp->month - 1) << endl;
+        }
     }
 };
 
