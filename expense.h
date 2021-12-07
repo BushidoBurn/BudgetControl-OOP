@@ -11,13 +11,30 @@ private:
     int month;
     float price;
     string definition;
-    int expense_counter = {0};
+    inline static int expense_counter = {0};
     vector<Expense> expense_vector;
     vector<string> months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
 public:
-    Expense(int month, float price, string definition);
-    ~Expense();
+    Expense(int month, float price, string definition)
+    {
+
+        this->month = month;
+        this->price = price;
+        this->definition = definition;
+        this->expense_counter++;
+        cout << "1  Expence Created" << endl;
+    }
+
+    ~Expense()
+    {
+
+        // this->month = NULL;
+        // this->price = NULL;
+        this->definition.clear();
+        this->expense_counter--;
+        cout << "1  Expence Destroyed" << endl;
+    }
 
     void showExpenseDetails()
     {
@@ -40,22 +57,17 @@ public:
     }
 };
 
-Expense::Expense(int month, float price, string definition)
+class FixedExpense : public Expense
 {
+private:
+    /* data */
+    int start_month;
+    int how_many_months;
 
-    this->month = month;
-    this->price = price;
-    this->definition = definition;
-    this->expense_counter++;
-    cout << "1  Expence Created" << endl;
-}
-
-Expense::~Expense()
-{
-
-    // this->month = NULL;
-    // this->price = NULL;
-    this->definition.clear();
-    this->expense_counter--;
-    cout << "1  Expence Destroyed" << endl;
-}
+public:
+    FixedExpense(int start_month, int how_many_months, int month, float price, string definition)
+        : Expense(month, price, definition)
+    {
+        cout << "Start : " << start_month << " " << how_many_months << endl;
+    }
+};
