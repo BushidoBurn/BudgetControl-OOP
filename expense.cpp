@@ -11,7 +11,7 @@ int month;
 float price;
 string definition;
 string months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-inline static vector<Expense *> expense_vector;
+
 int expense_counter;
 
 Expense::Expense(int month, float price, string definition)
@@ -24,16 +24,6 @@ Expense::Expense(int month, float price, string definition)
     expense_counter++;
     this->expense_vector.push_back(this);
     cout << "1  Expence Created" << endl;
-}
-
-Expense::~Expense()
-{
-
-    // this->month = NULL;
-    // this->price = NULL;
-    this->definition.clear();
-    expense_counter--;
-    cout << "1  Expence Destroyed" << endl;
 }
 
 void Expense::showExpenseDetails()
@@ -59,8 +49,40 @@ void Expense::popExpenseFromVector()
 
 void Expense::listAllExpenses()
 {
-    for (auto exp : this->expense_vector)
+    for (Expense *exp : Expense::expense_vector)
     {
-        cout << exp->definition << " " << exp->price << " " << months[(exp->month - 1)] << endl;
     }
+}
+
+void Expense::setMonth(int m)
+{
+    this->month = m;
+}
+void Expense::setPrice(float pr)
+{
+    this->price = pr;
+}
+void Expense::setDefinition(string df)
+{
+    this->definition = df;
+}
+int Expense::getMonth()
+{
+    return this->month;
+}
+float Expense::getPrice()
+{
+    return this->price;
+}
+string Expense::getDefinition()
+{
+    return this->definition;
+}
+
+vector<Expense *> Expense::getAllExpenses()
+{
+    return this->expense_vector;
+}
+void print_detail(Expense *exp)
+{
 }

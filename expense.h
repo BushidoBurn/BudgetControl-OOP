@@ -6,7 +6,7 @@ using namespace std;
 
 class Expense
 {
-private:
+protected:
     /* data */
     int month;
     float price;
@@ -17,7 +17,7 @@ private:
 public:
     Expense(int month, float price, string definition);
 
-    ~Expense();
+    virtual ~Expense(){};
 
     void showExpenseDetails();
 
@@ -28,4 +28,12 @@ public:
     void popExpenseFromVector();
 
     void listAllExpenses();
+    void setMonth(int month);
+    void setPrice(float price);
+    void setDefinition(string definition);
+    int getMonth();
+    float getPrice();
+    string getDefinition();
+    vector<Expense *> getAllExpenses();
+    virtual void print_detail(Expense *exp){};
 };
