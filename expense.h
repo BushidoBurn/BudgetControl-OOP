@@ -13,6 +13,7 @@ protected:
     string definition;
 
     inline static vector<Expense *> expense_vector;
+    inline static vector<Expense *> found_expense_vector;
 
 public:
     Expense(int month, float price, string definition);
@@ -36,4 +37,6 @@ public:
     string getDefinition();
     vector<Expense *> getAllExpenses();
     virtual void print_detail(Expense *exp){};
+    Expense *findExpense(string searchWord, Expense *expense);
+    vector<Expense *> findExpenseInVector(string searchWord);
 };

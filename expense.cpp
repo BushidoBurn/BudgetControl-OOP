@@ -86,3 +86,24 @@ vector<Expense *> Expense::getAllExpenses()
 void print_detail(Expense *exp)
 {
 }
+
+Expense *Expense::findExpense(string searchWord, Expense *expense)
+{
+
+    // str.find("haystack");
+    if (expense->getDefinition().find(searchWord) != string::npos)
+        return expense;
+    return NULL;
+}
+
+vector<Expense *> Expense::findExpenseInVector(string searchWord)
+{
+    this->found_expense_vector.clear(); // At the beginning of each search we do clean the vector
+    for (Expense *ex : this->getAllExpenses())
+    {
+
+        if (ex->findExpense(searchWord, ex))
+            ex->found_expense_vector.push_back(ex);
+    }
+    return this->found_expense_vector;
+}

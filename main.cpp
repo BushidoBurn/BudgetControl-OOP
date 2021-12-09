@@ -24,9 +24,15 @@ int main()
 
     // Expense * exp_p;
 
-    for (Expense *ex : f_exp.getAllExpenses())
+    // for (Expense *ex : f_exp.getAllExpenses())
+    // {
+    //     ex->print_detail(ex);
+    //     if (ex->findExpense("Rent33", ex))
+    //         cout << "Great found " << ex->findExpense("Rent33", ex)->getDefinition() << " " << ex->findExpense("Rent33", ex)->getPrice() << " " << ex->findExpense("Rent33", ex)->getMonth();
+    // }
+    for (Expense *e : f_exp.findExpenseInVector("Rent33"))
     {
-        ex->print_detail(ex);
+        cout << e->getDefinition() << endl;
     }
 
     return 0;
