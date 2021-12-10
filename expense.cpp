@@ -128,3 +128,14 @@ void Expense::deleteOneExpense(int ind)
 {
     this->expense_vector.erase(this->expense_vector.begin() + ind);
 }
+
+void Expense::updateOneExpense(int ind, string definition, float price, int month)
+{
+
+    if (!definition.empty())
+        this->expense_vector.at(ind)->definition = definition;
+    if (price != -9999.0)
+        this->expense_vector.at(ind)->price = price;
+    if (month != -9999)
+        this->expense_vector.at(ind)->month = month;
+}

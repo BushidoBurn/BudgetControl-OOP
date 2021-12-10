@@ -20,7 +20,9 @@ int main()
     Discretionary b = Discretionary(1, 3, 1, 12.7, "Rent33");
 
     f_exp.findAndList("Rent33");
+    f_exp.updateOneExpense(1, "Rentxyz");
     f_exp.deleteOneExpense(3);
+
     f_exp.findAndList("Rent");
 
     return 0;
