@@ -13,7 +13,7 @@ string definition;
 string months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
 int expense_counter;
-
+vector<int> found_expense_index_vector;
 Expense::Expense(int month, float price, string definition)
 {
     expense_counter = 0;
@@ -99,11 +99,32 @@ Expense *Expense::findExpense(string searchWord, Expense *expense)
 vector<Expense *> Expense::findExpenseInVector(string searchWord)
 {
     this->found_expense_vector.clear(); // At the beginning of each search we do clean the vector
+    found_expense_index_vector.clear();
+    int counter = 0;
     for (Expense *ex : this->getAllExpenses())
     {
 
         if (ex->findExpense(searchWord, ex))
+        {
             ex->found_expense_vector.push_back(ex);
+            found_expense_index_vector.push_back(counter);
+        }
+        counter++;
     }
     return this->found_expense_vector;
+}
+
+void Expense::findAndList(string searchWord)
+{
+    vector<Expense *> dummy = this->findExpenseInVector(searchWord);
+
+    for (int x = 0; x < dummy.size(); x++)
+    {
+        cout << "(" << found_expense_index_vector[x] << ") " << dummy[x]->getDefinition() << endl;
+    }
+}
+
+void Expense::deleteOneExpense(int ind)
+{
+    this->expense_vector.erase(this->expense_vector.begin() + ind);
 }

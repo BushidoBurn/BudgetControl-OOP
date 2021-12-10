@@ -39,4 +39,6 @@ public:
     virtual void print_detail(Expense *exp){};
     Expense *findExpense(string searchWord, Expense *expense);
     vector<Expense *> findExpenseInVector(string searchWord);
+    void findAndList(string searchWord);
+    void deleteOneExpense(int ind);
 };
