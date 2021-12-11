@@ -139,3 +139,10 @@ void Expense::updateOneExpense(int ind, string definition, float price, int mont
     if (month != -9999)
         this->expense_vector.at(ind)->month = month;
 }
+
+void Expense::deleteAllExpenses()
+{
+    this->found_expense_vector.clear();
+    found_expense_index_vector.clear();
+    expense_vector.clear();
+}

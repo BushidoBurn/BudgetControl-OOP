@@ -42,4 +42,5 @@ public:
     void findAndList(string searchWord);
     void deleteOneExpense(int ind);
     void updateOneExpense(int ind, string definition = "", float price = -9999.0, int month = -9999);
+    void deleteAllExpenses();
 };

@@ -21,9 +21,11 @@ int main()
 
     f_exp.findAndList("Rent33");
     f_exp.updateOneExpense(1, "Rentxyz");
-    f_exp.deleteOneExpense(3);
+    // f_exp.deleteAllExpenses();
 
-    f_exp.findAndList("Rent");
+    // f_exp.deleteOneExpense(3);
+    f_exp.listAllExpenses();
+    // f_exp.findAndList("Rent");
 
     return 0;
 }
