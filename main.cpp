@@ -14,15 +14,15 @@ int main()
 {
 
     FixedExpense f_exp = FixedExpense(1, 3, 1, 12.3, "Rent");
-    FixedExpense d_exp = FixedExpense(1, 3, 1, 12.3, "Rent1");
+    FixedExpense d_exp = FixedExpense(1, 3, 1, 12.7, "Rent1");
 
     Discretionary a = Discretionary(1, 3, 1, 12.5, "Rent22");
-    Discretionary b = Discretionary(1, 3, 1, 12.7, "Rent33");
+    Discretionary b = Discretionary(1, 3, 1, 12.9, "Rent33");
 
     f_exp.findAndList("Rent33");
     f_exp.updateOneExpense(1, "Rentxyz");
     // f_exp.deleteAllExpenses();
-
+    f_exp.sortByPrice();
     // f_exp.deleteOneExpense(3);
     f_exp.listAllExpenses();
     // f_exp.findAndList("Rent");

@@ -3,6 +3,7 @@
 #include <vector>
 #include "expense.h"
 #include "some_globals.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -51,6 +52,7 @@ void Expense::listAllExpenses()
 {
     for (Expense *exp : Expense::expense_vector)
     {
+        cout << exp->getDefinition() << " " << exp->getPrice() << " " << exp->getMonth() << endl;
     }
 }
 
@@ -145,4 +147,17 @@ void Expense::deleteAllExpenses()
     this->found_expense_vector.clear();
     found_expense_index_vector.clear();
     expense_vector.clear();
+}
+
+bool operator<(Expense a, Expense b)
+{
+    if (a.getPrice() < b.getPrice())
+        return true;
+    else
+        return false;
+}
+
+void Expense::sortByPrice()
+{
+    sort(this->expense_vector.begin(), this->expense_vector.end());
 }
