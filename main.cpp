@@ -12,8 +12,11 @@ extern vector<int> found_expense_index_vector;
 
 int main()
 {
+    // Expense ex = Expense(1, 1.1, "D");
+    // ex.addExpenseToVector(ex);
 
     FixedExpense f_exp = FixedExpense(0, 0, 0, 0, "Null");
+    // f_exp.addExpenseToVector(f_exp);
     f_exp.readAllFromFile("hello.txt");
     // FixedExpense d_exp = FixedExpense(1, 3, 1, 12.7, "Rent1");
 

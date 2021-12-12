@@ -8,6 +8,7 @@
 #include <typeinfo>
 #include "fixedexpence.h"
 #include "discretionary.h"
+#include <sstream>
 
 using namespace std;
 
@@ -27,14 +28,14 @@ Expense::Expense(int month, float price, string definition)
     this->price = price;
     this->definition = definition;
     expense_counter++;
-    this->expense_vector.push_back(this);
-    cout << "1  Expence Created" << endl;
+    // this->expense_vector.push_back(this);
+    // cout << "1  Expence Created" << endl;
     this->mytype = 0;
 }
 
 void Expense::showExpenseDetails()
 {
-    cout << months << endl;
+    // cout << months << endl;
     cout << "Definition " << definition << endl;
     cout << "Price " << price << endl;
     cout << "Month " << months[(month - 1)] << endl;
@@ -46,7 +47,7 @@ void Expense::showTotalNumberOfExpenses()
 
 void Expense::addExpenseToVector(Expense &e)
 {
-    this->expense_vector.push_back(&e);
+    Expense::expense_vector.push_back(&e);
 }
 void Expense::popExpenseFromVector()
 {
@@ -55,9 +56,10 @@ void Expense::popExpenseFromVector()
 
 void Expense::listAllExpenses()
 {
-    for (Expense *exp : Expense::expense_vector)
+    for (auto exp : Expense::expense_vector)
     {
         cout << exp->getDefinition() << " " << exp->getPrice() << " " << exp->getMonth() << endl;
+        // exp->print_detail();
     }
 }
 
@@ -90,7 +92,7 @@ vector<Expense *> Expense::getAllExpenses()
 {
     return this->expense_vector;
 }
-void print_detail(Expense *exp)
+void print_detail()
 {
 }
 
@@ -204,20 +206,25 @@ void Expense::readAllFromFile(string fName)
 
     ifstream input(fName);
 
-    for (string line; getline(input, line);)
+    for (string line; getline(input, line);) ///////////////Problem can not add normally
     {
+        // cout << "mytype: " << *p_mytype << endl;
         this->getSplittedValues(line, " ", p_start_month, p_howmanymonths, p_definition, p_price, p_month, p_mytype);
         if (*p_mytype == 0)
         {
-            Expense(*p_month, *p_price, *p_definition);
+            // Expense *dummy = new Expense(month, price, definition);
+            Expense::addExpenseToVector(*(new Expense(month, price, definition)));
         }
         if (*p_mytype == 1)
         {
-            FixedExpense(*p_start_month, *p_howmanymonths, *p_month, *p_price, *p_definition);
+            // cout << start_month << " " << howManyMonths << " " << month << " " << price << " " << definition;
+            Expense::addExpenseToVector(*(new FixedExpense(start_month, howManyMonths, month, price, definition)));
+            // FixedExpense *dummy = new FixedExpense(start_month, howManyMonths, month, price, definition);
         }
         if (*p_mytype == 2)
         {
-            Discretionary(*p_start_month, *p_howmanymonths, *p_month, *p_price, *p_definition);
+            // Discretionary *dummy = new Discretionary(start_month, howManyMonths, month, price, definition);
+            Expense::addExpenseToVector(*(new Discretionary(start_month, howManyMonths, month, price, definition)));
         }
     }
 
@@ -227,44 +234,42 @@ void Expense::readAllFromFile(string fName)
 void Expense::getSplittedValues(string line, string delimiter, int *start_month, int *howmanymonths, string *definition, float *price, int *month, int *mytype)
 {
     int token_count = 0;
-    auto start = 0U;
-    auto end = line.find(delimiter);
-    while (end != string::npos)
-    {
-        // cout << line.substr(start, end - start) << endl;
-        start = end + delimiter.length();
-        end = line.find(delimiter, start);
-    }
 
-    string token = line.substr(start, end);
-    if (token_count == 0)
+    vector<string> v = split(line, ' ');
+    for (auto token : v)
     {
-        if (token == "*")
-            *mytype = 0;
-        if (token == "**")
-            *mytype = 1;
-        if (token == "***")
-            *mytype = 2;
-    }
-    else if (token_count == 1)
-    {
-        *definition = token;
-    }
-    else if (token_count == 2)
-    {
-        *price = stof(token);
-    }
-    else if (token_count == 3)
-    {
-        *month = stoi(token);
-    }
-    else if (token_count == 4)
-    {
-        *start_month = stoi(token);
-    }
-    else if (token_count == 5)
-    {
-        *howmanymonths = stoi(token);
+        // cout << "Token: " << token << endl;
+
+        if (token_count == 0)
+        {
+            if (token.compare("*"))
+                *mytype = 0;
+            if (token.compare("**"))
+                *mytype = 1;
+            if (token.compare("***"))
+                *mytype = 2;
+        }
+        else if (token_count == 1)
+        {
+            *definition = token;
+        }
+        else if (token_count == 2)
+        {
+            *price = stof(token);
+        }
+        else if (token_count == 3)
+        {
+            *month = stoi(token);
+        }
+        else if (token_count == 4)
+        {
+            *start_month = stoi(token);
+        }
+        else if (token_count == 5)
+        {
+            *howmanymonths = stoi(token);
+        }
+        token_count++;
     }
 }
 
@@ -275,4 +280,18 @@ void Expense::writeToFile(ofstream &output)
     output << this->getDefinition() << " ";
     output << this->getPrice() << " ";
     output << month << " ";
+}
+
+vector<string> Expense::split(const string &s, char delim)
+{
+    vector<string> result;
+    stringstream ss(s);
+    string item;
+
+    while (getline(ss, item, delim))
+    {
+        result.push_back(item);
+    }
+
+    return result;
 }

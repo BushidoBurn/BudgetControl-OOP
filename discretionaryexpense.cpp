@@ -11,9 +11,9 @@ Discretionary::Discretionary(int start_month, int how_many_months, int month, fl
     this->start_month = start_month;
     this->how_many_months = how_many_months;
 }
-void Discretionary::print_detail(Expense *exp)
+void Discretionary::print_detail()
 {
-    cout << FMAG("Definition ") << exp->getDefinition() << " " << exp->getPrice() << " " << months[(exp->getMonth() - 1)] << endl;
+    cout << FMAG("Definition ") << this->getDefinition() << " " << this->getPrice() << " " << months[(this->getMonth() - 1)] << endl;
 }
 
 int Discretionary::getStartMonth()

@@ -28,7 +28,7 @@ public:
 
     void showTotalNumberOfExpenses();
 
-    void addExpenseToVector(Expense &e);
+    void static addExpenseToVector(Expense &e);
 
     void popExpenseFromVector();
 
@@ -40,7 +40,7 @@ public:
     float getPrice();
     string getDefinition();
     vector<Expense *> getAllExpenses();
-    virtual void print_detail(Expense *exp){};
+    virtual void print_detail(){};
     Expense *findExpense(string searchWord, Expense *expense);
     vector<Expense *> findExpenseInVector(string searchWord);
     void findAndList(string searchWord);
@@ -52,4 +52,5 @@ public:
     virtual void writeToFile(ofstream &output);
     void readAllFromFile(string fName);
     void getSplittedValues(string line, string delimiter, int *start_month, int *howmanymonths, string *definition, float *price, int *month, int *mytype);
+    vector<string> split(const string &s, char delim);
 };
