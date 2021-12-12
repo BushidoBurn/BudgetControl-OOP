@@ -4,6 +4,10 @@
 #include "expense.h"
 #include "some_globals.h"
 #include <algorithm>
+#include <fstream>
+#include <typeinfo>
+#include "fixedexpence.h"
+#include "discretionary.h"
 
 using namespace std;
 
@@ -25,6 +29,7 @@ Expense::Expense(int month, float price, string definition)
     expense_counter++;
     this->expense_vector.push_back(this);
     cout << "1  Expence Created" << endl;
+    this->mytype = 0;
 }
 
 void Expense::showExpenseDetails()
@@ -160,4 +165,114 @@ bool operator<(Expense a, Expense b)
 void Expense::sortByPrice()
 {
     sort(this->expense_vector.begin(), this->expense_vector.end());
+}
+
+void Expense::writeAllToFile(string fName)
+{
+    // ofstream out(fName);
+    ofstream output;
+    output.open(fName);
+    // for (auto e : this->expense_vector)
+    // {
+    //     out << e->getDefinition();
+    //     out << " " << e->getPrice();
+    //     out << " " << e->getMonth();
+    //     out << endl;
+    // }
+    for (auto e : this->expense_vector)
+    {
+        e->writeToFile(output);
+    }
+
+    output.close();
+}
+
+void Expense::readAllFromFile(string fName)
+{
+    string definition = "";
+    float price = 0;
+    int month;
+    int mytype = 0;
+    int start_month = 0;
+    int howManyMonths = 0;
+    string *p_definition = &definition;
+    float *p_price = &price;
+    int *p_month = &month;
+    int *p_mytype = &mytype;
+    int *p_start_month = &start_month;
+    int *p_howmanymonths = &howManyMonths;
+
+    ifstream input(fName);
+
+    for (string line; getline(input, line);)
+    {
+        this->getSplittedValues(line, " ", p_start_month, p_howmanymonths, p_definition, p_price, p_month, p_mytype);
+        if (*p_mytype == 0)
+        {
+            Expense(*p_month, *p_price, *p_definition);
+        }
+        if (*p_mytype == 1)
+        {
+            FixedExpense(*p_start_month, *p_howmanymonths, *p_month, *p_price, *p_definition);
+        }
+        if (*p_mytype == 2)
+        {
+            Discretionary(*p_start_month, *p_howmanymonths, *p_month, *p_price, *p_definition);
+        }
+    }
+
+    input.close();
+}
+
+void Expense::getSplittedValues(string line, string delimiter, int *start_month, int *howmanymonths, string *definition, float *price, int *month, int *mytype)
+{
+    int token_count = 0;
+    auto start = 0U;
+    auto end = line.find(delimiter);
+    while (end != string::npos)
+    {
+        // cout << line.substr(start, end - start) << endl;
+        start = end + delimiter.length();
+        end = line.find(delimiter, start);
+    }
+
+    string token = line.substr(start, end);
+    if (token_count == 0)
+    {
+        if (token == "*")
+            *mytype = 0;
+        if (token == "**")
+            *mytype = 1;
+        if (token == "***")
+            *mytype = 2;
+    }
+    else if (token_count == 1)
+    {
+        *definition = token;
+    }
+    else if (token_count == 2)
+    {
+        *price = stof(token);
+    }
+    else if (token_count == 3)
+    {
+        *month = stoi(token);
+    }
+    else if (token_count == 4)
+    {
+        *start_month = stoi(token);
+    }
+    else if (token_count == 5)
+    {
+        *howmanymonths = stoi(token);
+    }
+}
+
+void Expense::writeToFile(ofstream &output)
+{
+    output << "*"
+           << " ";
+    output << this->getDefinition() << " ";
+    output << this->getPrice() << " ";
+    output << month << " ";
 }
