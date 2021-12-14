@@ -2,6 +2,7 @@
 #include "some_globals.h"
 #include "colors.h"
 #include <iostream>
+#include"colormod.h"
 using namespace std;
 /* data */
 int start_month;
@@ -24,9 +25,10 @@ void FixedExpense ::showExpenseDetails()
     cout << "Month " << months[(month - 1)] << endl;
 }
 
-void FixedExpense::print_detail()
-{
-    cout << FBLU("Definition ") << this->getDefinition() << " " << this->getPrice() << " " << months[(this->getMonth() - 1)] << endl;
+void FixedExpense::print_detail(int i)
+{  Color::Modifier red(Color::FG_RED);
+    Color::Modifier def(Color::FG_DEFAULT);
+    cout <<red<< "("<<i<<")"<<this->getDefinition() << " " << this->getPrice() << " " << months[(this->getMonth() - 1)] <<def<< endl;
 }
 
 void FixedExpense::writeToFile(ofstream &output)

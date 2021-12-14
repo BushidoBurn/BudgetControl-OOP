@@ -40,7 +40,7 @@ public:
     float getPrice();
     string getDefinition();
     vector<Expense *> getAllExpenses();
-    virtual void print_detail(){};
+    virtual void print_detail(int i){};
     Expense *findExpense(string searchWord, Expense *expense);
     vector<Expense *> findExpenseInVector(string searchWord);
     void findAndList(string searchWord);

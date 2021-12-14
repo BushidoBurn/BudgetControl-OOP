@@ -1,0 +1,27 @@
+# ninja log v5
+2	3056	1639430872214880784	CMakeFiles/BudgetControl_OOP.dir/main.cpp.o	19d94eb7dc3f46f7
+1	3127	1639430872284024546	CMakeFiles/BudgetControl_OOP.dir/fixedexpense.cpp.o	170083077355bb09
+0	3151	1639430872313982204	CMakeFiles/BudgetControl_OOP.dir/discretionaryexpense.cpp.o	5c8650a258d278e1
+0	3548	1639430872711185897	CMakeFiles/BudgetControl_OOP.dir/expense.cpp.o	cd3a2f0d62301ce2
+3	1049	1639431028369956770	CMakeFiles/BudgetControl_OOP.dir/manager.cpp.o	16b52f10f813bdcd
+1049	1170	1639431028493144178	BudgetControl_OOP	139fdfdec6bc0d4a
+9	1040	1639431256430558356	CMakeFiles/BudgetControl_OOP.dir/manager.cpp.o	16b52f10f813bdcd
+1040	1233	1639431256625671559	BudgetControl_OOP	139fdfdec6bc0d4a
+5	840	1639431530145560588	CMakeFiles/BudgetControl_OOP.dir/manager.cpp.o	16b52f10f813bdcd
+841	973	1639431530285858526	BudgetControl_OOP	139fdfdec6bc0d4a
+5	1189	1639431679561574571	CMakeFiles/BudgetControl_OOP.dir/manager.cpp.o	16b52f10f813bdcd
+3	1542	1639431679912982697	CMakeFiles/BudgetControl_OOP.dir/main.cpp.o	19d94eb7dc3f46f7
+1542	1681	1639431680064482020	BudgetControl_OOP	139fdfdec6bc0d4a
+4	1100	1639431883566441891	CMakeFiles/BudgetControl_OOP.dir/manager.cpp.o	16b52f10f813bdcd
+4	995	1639431913029019139	CMakeFiles/BudgetControl_OOP.dir/manager.cpp.o	16b52f10f813bdcd
+2	943	1639432083051910240	CMakeFiles/BudgetControl_OOP.dir/manager.cpp.o	16b52f10f813bdcd
+4	1035	1639432132454738593	CMakeFiles/BudgetControl_OOP.dir/manager.cpp.o	16b52f10f813bdcd
+1035	1206	1639432132634595534	BudgetControl_OOP	139fdfdec6bc0d4a
+5	1237	1639432467061759725	CMakeFiles/BudgetControl_OOP.dir/manager.cpp.o	16b52f10f813bdcd
+1237	1409	1639432467245447867	BudgetControl_OOP	139fdfdec6bc0d4a
+12	4117	1639439181683952395	CMakeFiles/BudgetControl_OOP.dir/fixedexpense.cpp.o	170083077355bb09
+9	2049	1639440966942310534	CMakeFiles/BudgetControl_OOP.dir/main.cpp.o	19d94eb7dc3f46f7
+8	2123	1639440967019026886	CMakeFiles/BudgetControl_OOP.dir/discretionaryexpense.cpp.o	5c8650a258d278e1
+11	2301	1639440967195426778	CMakeFiles/BudgetControl_OOP.dir/manager.cpp.o	16b52f10f813bdcd
+8	2573	1639440967470768684	CMakeFiles/BudgetControl_OOP.dir/expense.cpp.o	cd3a2f0d62301ce2
+2573	2837	1639440967743887142	BudgetControl_OOP	139fdfdec6bc0d4a

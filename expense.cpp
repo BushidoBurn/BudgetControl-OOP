@@ -10,6 +10,7 @@
 #include "discretionary.h"
 #include <sstream>
 
+
 using namespace std;
 
 /* data */
@@ -55,11 +56,12 @@ void Expense::popExpenseFromVector()
 }
 
 void Expense::listAllExpenses()
-{
+{ int counter=0;
     for (auto exp : Expense::expense_vector)
     {
-        cout << exp->getDefinition() << " " << exp->getPrice() << " " << exp->getMonth() << endl;
-        // exp->print_detail();
+        //cout << exp->getDefinition() << " " << exp->getPrice() << " " << exp->getMonth() << endl;
+         exp->print_detail(counter);
+         counter++;
     }
 }
 
@@ -166,7 +168,14 @@ bool operator<(Expense a, Expense b)
 
 void Expense::sortByPrice()
 {
-    sort(this->expense_vector.begin(), this->expense_vector.end());
+    //std::sort(this->expense_vector.begin(), this->expense_vector.end());
+
+    std::sort(this->expense_vector.begin(), this->expense_vector.end(),
+              [] (Expense* lhs, Expense* rhs) {
+                  return lhs->getPrice() < rhs->getPrice();
+              });
+    for (const auto& element : this->expense_vector)
+        std::cout << element->price<< std::endl;
 }
 
 void Expense::writeAllToFile(string fName)
@@ -242,11 +251,11 @@ void Expense::getSplittedValues(string line, string delimiter, int *start_month,
 
         if (token_count == 0)
         {
-            if (token.compare("*"))
+            if (!token.compare("*"))
                 *mytype = 0;
-            if (token.compare("**"))
+            if (!token.compare("**"))
                 *mytype = 1;
-            if (token.compare("***"))
+            if (!token.compare("***"))
                 *mytype = 2;
         }
         else if (token_count == 1)

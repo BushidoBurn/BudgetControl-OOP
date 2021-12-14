@@ -2,6 +2,7 @@
 #include "colors.h"
 #include "some_globals.h"
 #include <iostream>
+#include"colormod.h"
 using namespace std;
 Discretionary::Discretionary(int start_month, int how_many_months, int month, float price, string definition)
     : Expense(month, price, definition)
@@ -11,9 +12,10 @@ Discretionary::Discretionary(int start_month, int how_many_months, int month, fl
     this->start_month = start_month;
     this->how_many_months = how_many_months;
 }
-void Discretionary::print_detail()
-{
-    cout << FMAG("Definition ") << this->getDefinition() << " " << this->getPrice() << " " << months[(this->getMonth() - 1)] << endl;
+void Discretionary::print_detail(int i)
+{   Color::Modifier blue(Color::FG_BLUE);
+    Color::Modifier def(Color::FG_DEFAULT);
+    cout <<blue << "("<<i<<")"<<this->getDefinition() << " " << this->getPrice() << " " << months[(this->getMonth() - 1)] <<def <<endl;
 }
 
 int Discretionary::getStartMonth()

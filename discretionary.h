@@ -9,7 +9,7 @@ private:
 
 public:
     Discretionary(int start_month, int how_many_months, int month, float price, string definition);
-    virtual void print_detail();
+    virtual void print_detail(int i);
     int getStartMonth();
     int getHownManyMonths();
     virtual void writeToFile(ofstream &output);

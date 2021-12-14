@@ -12,7 +12,7 @@ private:
 public:
     FixedExpense(int start_month, int how_many_months, int month, float price, string definition);
     void showExpenseDetails();
-    virtual void print_detail();
+    virtual void print_detail(int i);
     virtual void writeToFile(ofstream &output);
     int getStartMonth();
     int getHownManyMonths();
