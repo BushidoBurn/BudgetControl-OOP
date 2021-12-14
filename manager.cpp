@@ -5,6 +5,7 @@
 #include "expense.h"
 #include "fixedexpence.h"
 #include "discretionary.h"
+#include"colormod.h"
 
 using std::cout;
 using std::cin;
@@ -34,7 +35,7 @@ void manage(){
         cin>>option;
         if(!option.compare("insert"))
         {
-            cout<<"Is This A Fixed Expense type Y or n N Please";
+            cout<<"Is This A Fixed Expense type Y or n N Please"<<endl;
             cin>>option;
             if(!option.compare("Y"))
             {
@@ -43,9 +44,9 @@ void manage(){
                 cout<<"Enter How Many Months Does It Last"<<endl;
                 cin>>howManyMonths;
                 cout<<"Enter Price"<<endl;
-                cin>>month;
-                cout<<"Enter Month"<<endl;
                 cin>>price;
+                cout<<"Enter Month"<<endl;
+                cin>>month;
                 cout<<"Enter Definition"<<endl;
                 cin>>definition;
 
@@ -58,9 +59,9 @@ void manage(){
                 cout<<"Enter How Many Months Does It Last"<<endl;
                 cin>>howManyMonths;
                 cout<<"Enter Price"<<endl;
-                cin>>month;
-                cout<<"Enter Month"<<endl;
                 cin>>price;
+                cout<<"Enter Month"<<endl;
+                cin>>month;
                 cout<<"Enter Definition"<<endl;
                 cin>>definition;
 
@@ -91,7 +92,7 @@ void manage(){
         }
         else if (!option.compare("sort")){
             root.sortByPrice();
-            //root.listAllExpenses();
+            root.listAllExpenses();
         }
         else if (!option.compare("write")){
             cout<<"Please Enter File Name"<<endl;
@@ -115,6 +116,21 @@ void manage(){
 
 
 void printOptions(){
+
+    Color::Modifier green(Color::FG_GREEN);
+    Color::Modifier def(Color::FG_DEFAULT);
+
+    string oopHeader="\n"
+                     "  ____            _            _               ____   ____  _____  \n"
+                     " |  _ \\          | |          | |             / __ \\ / __ \\|  __ \\ \n"
+                     " | |_) |_   _  __| | __ _  ___| |_   ______  | |  | | |  | | |__) |\n"
+                     " |  _ <| | | |/ _` |/ _` |/ _ | __| |______| | |  | | |  | |  ___/ \n"
+                     " | |_) | |_| | (_| | (_| |  __| |_           | |__| | |__| | |     \n"
+                     " |____/ \\__,_|\\__,_|\\__, |\\___|\\__|           \\____/ \\____/|_|     \n"
+                     "                     __/ |                                         \n"
+                     "                    |___/                                          ";
+
+    cout<<green<<oopHeader<<def;
     printf("\n#################################################################################################--Commands--################################################################################################");
     printf("\n#\tinsert=insert\n#\tdel_all=Delete all items from memory\n#\tdel=Delete given item\n#\tfind=find\n#\tlist=list\n#\tsort=sort\n#\twrite=write to file\n#\tread=read from file\n#\tclear=clearscreen\n");
     printf("\n############################################################################################################################################################################################################\n");

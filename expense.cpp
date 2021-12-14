@@ -168,8 +168,8 @@ void Expense::sortByPrice()
               [] (Expense* lhs, Expense* rhs) {
                   return lhs->getPrice() < rhs->getPrice();
               });
-    for (const auto& element : this->expense_vector)
-        std::cout << element->price<< std::endl;
+//    for (const auto& element : this->expense_vector)
+//        std::cout << element->price<< std::endl;
 }
 
 void Expense::writeAllToFile(string fName)
