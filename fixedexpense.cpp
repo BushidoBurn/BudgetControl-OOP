@@ -14,12 +14,10 @@ FixedExpense::FixedExpense(int start_month, int how_many_months, int month, floa
 
     this->start_month = start_month;
     this->how_many_months = how_many_months;
-    // cout << "Start : " << start_month << " " << how_many_months << endl;
     this->mytype = 1;
 }
 void FixedExpense ::showExpenseDetails()
 {
-    // cout << months << endl;
     cout << FBLU("Definition ") << this->getDefinition() << endl;
     cout << "Price " << this->getPrice() << endl;
     cout << "Month " << months[(month - 1)] << endl;

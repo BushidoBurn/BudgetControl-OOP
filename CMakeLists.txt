@@ -11,7 +11,6 @@ add_executable(BudgetControl_OOP
         discretionaryexpense.cpp
         expense.cpp
         expense.h
-        expense1.h
         fixedexpence.h
         fixedexpense.cpp
         main.cpp

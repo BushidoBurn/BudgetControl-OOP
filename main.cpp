@@ -14,34 +14,6 @@ extern vector<int> found_expense_index_vector;
 
 int main()
 {
-
-    //Expense ex = Expense(1, 1.1, "D");
-     //ex.addExpenseToVector(ex);
-
-     //ex.readAllFromFile("hello.txt");
-     //ex.listAllExpenses();
-     //ex.sortByPrice();
-     //ex.listAllExpenses();
-    // FixedExpense f_exp = FixedExpense(0, 0, 0, 0, "Null");
-    //  f_exp.addExpenseToVector(f_exp);
-    // f_exp.readAllFromFile("hello.txt");
-      //FixedExpense d_exp = FixedExpense(1, 3, 1, 12.7, "Rent1");
-
-     //Discretionary a = Discretionary(1, 3, 1, 12.5, "Rent22");
-     //Discretionary b = Discretionary(1, 3, 1, 12.9, "Rent33");
-    //a.listAllExpenses();
-    // f_exp.findAndList("Rent33");
-    // f_exp.updateOneExpense(1, "Rentxyz");
-    //  f_exp.deleteAllExpenses();
-    // f_exp.sortByPrice();
-    //  f_exp.deleteOneExpense(3);
-    //a.sortByPrice();
-    //a.listAllExpenses();
-     //f_exp.listAllExpenses();
-    //  f_exp.findAndList("Rent");
-    // f_exp.writeAllToFile("data.txt");
-    // f_exp.writeAllToFile("hello.txt");
-
     printOptions();
     manage();
 

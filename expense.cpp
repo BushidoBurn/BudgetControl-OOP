@@ -29,14 +29,11 @@ Expense::Expense(int month, float price, string definition)
     this->price = price;
     this->definition = definition;
     expense_counter++;
-    // this->expense_vector.push_back(this);
-    // cout << "1  Expence Created" << endl;
     this->mytype = 0;
 }
 
 void Expense::showExpenseDetails()
 {
-    // cout << months << endl;
     cout << "Definition " << definition << endl;
     cout << "Price " << price << endl;
     cout << "Month " << months[(month - 1)] << endl;
@@ -59,7 +56,6 @@ void Expense::listAllExpenses()
 { int counter=0;
     for (auto exp : Expense::expense_vector)
     {
-        //cout << exp->getDefinition() << " " << exp->getPrice() << " " << exp->getMonth() << endl;
          exp->print_detail(counter);
          counter++;
     }
@@ -101,7 +97,7 @@ void print_detail()
 Expense *Expense::findExpense(string searchWord, Expense *expense)
 {
 
-    // str.find("haystack");
+
     if (expense->getDefinition().find(searchWord) != string::npos)
         return expense;
     return NULL;
@@ -168,8 +164,6 @@ bool operator<(Expense a, Expense b)
 
 void Expense::sortByPrice()
 {
-    //std::sort(this->expense_vector.begin(), this->expense_vector.end());
-
     std::sort(this->expense_vector.begin(), this->expense_vector.end(),
               [] (Expense* lhs, Expense* rhs) {
                   return lhs->getPrice() < rhs->getPrice();
@@ -180,16 +174,9 @@ void Expense::sortByPrice()
 
 void Expense::writeAllToFile(string fName)
 {
-    // ofstream out(fName);
     ofstream output;
     output.open(fName);
-    // for (auto e : this->expense_vector)
-    // {
-    //     out << e->getDefinition();
-    //     out << " " << e->getPrice();
-    //     out << " " << e->getMonth();
-    //     out << endl;
-    // }
+
     for (auto e : this->expense_vector)
     {
         e->writeToFile(output);
@@ -215,24 +202,20 @@ void Expense::readAllFromFile(string fName)
 
     ifstream input(fName);
 
-    for (string line; getline(input, line);) ///////////////Problem can not add normally
+    for (string line; getline(input, line);)
     {
-        // cout << "mytype: " << *p_mytype << endl;
         this->getSplittedValues(line, " ", p_start_month, p_howmanymonths, p_definition, p_price, p_month, p_mytype);
         if (*p_mytype == 0)
         {
-            // Expense *dummy = new Expense(month, price, definition);
             Expense::addExpenseToVector(*(new Expense(month, price, definition)));
         }
         if (*p_mytype == 1)
         {
-            // cout << start_month << " " << howManyMonths << " " << month << " " << price << " " << definition;
             Expense::addExpenseToVector(*(new FixedExpense(start_month, howManyMonths, month, price, definition)));
-            // FixedExpense *dummy = new FixedExpense(start_month, howManyMonths, month, price, definition);
+
         }
         if (*p_mytype == 2)
         {
-            // Discretionary *dummy = new Discretionary(start_month, howManyMonths, month, price, definition);
             Expense::addExpenseToVector(*(new Discretionary(start_month, howManyMonths, month, price, definition)));
         }
     }
@@ -247,8 +230,6 @@ void Expense::getSplittedValues(string line, string delimiter, int *start_month,
     vector<string> v = split(line, ' ');
     for (auto token : v)
     {
-        // cout << "Token: " << token << endl;
-
         if (token_count == 0)
         {
             if (!token.compare("*"))
